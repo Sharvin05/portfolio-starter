@@ -1,0 +1,94 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: $radius-card;
+  padding: $card-pad-lg;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  @include lg {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+.badge {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: $radius-inner;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.years {
+  @include type-number;
+}
+
+.dash {
+  color: var(--accent);
+}
+
+.title {
+  @include type-title;
+}
+
+.college {
+  @include colors;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.collegeIcon {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.institution {
+  @include type-label;
+  font-weight: 400;
+  margin-top: 6px;
+  color: var(--fg-soft);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.statValue {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.statScale {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--fg-soft);
+}
+
+.statLabel {
+  @include type-caption;
+  margin-top: 6px;
+  color: var(--fg-soft);
+}

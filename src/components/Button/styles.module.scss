@@ -1,0 +1,62 @@
+@use "mixins" as *;
+
+.base {
+  @include colors;
+  display: inline-flex;
+  height: $control-lg;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  border-radius: $radius-pill;
+  font-size: 15px;
+  font-weight: 600;
+
+  &[aria-busy="true"] {
+    cursor: progress;
+    opacity: 0.8;
+  }
+}
+
+.primary {
+  flex: 1;
+  justify-content: center;
+  background: var(--accent);
+  padding-inline: 26px;
+  color: var(--on-accent);
+
+  &:hover {
+    background: var(--accent-hover);
+  }
+
+  @include sm {
+    flex: none;
+  }
+}
+
+.ghost {
+  padding-inline: 4px;
+  color: var(--fg);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: $radius-pill;
+  border: 2px solid alpha(on-accent, 30%);
+  border-top-color: var(--on-accent);
+  animation: spin 0.8s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 2.4s;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

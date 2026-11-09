@@ -1,0 +1,59 @@
+@use "mixins" as *;
+
+.root {
+  position: relative;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 600px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Soft accent core and two orbit rings give the sphere depth
+.core {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 38%;
+  height: 38%;
+  translate: -50% -50%;
+  border-radius: $radius-pill;
+  background: radial-gradient(circle, alpha(accent, 45%), alpha(accent, 8%) 55%, transparent 70%);
+  filter: blur(24px);
+}
+
+.ringA {
+  pointer-events: none;
+  position: absolute;
+  inset: 9%;
+  border-radius: $radius-pill;
+  border: 1px solid alpha(fg, 10%);
+}
+
+.ringB {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 9%;
+  top: 50%;
+  height: 26%;
+  translate: 0 -50%;
+  border-radius: 50%;
+  border: 1px solid alpha(fg, 10%);
+}
+
+.hint {
+  @include type-overline;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  color: var(--fg-soft);
+}

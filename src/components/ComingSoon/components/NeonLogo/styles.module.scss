@@ -1,0 +1,24 @@
+@use "mixins" as *;
+
+.root {
+  position: relative;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 460px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--fg);
+  perspective: 900px;
+
+  &:focus-visible {
+    border-radius: $radius-card;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+}
+
+.tilt {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}

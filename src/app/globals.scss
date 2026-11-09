@@ -1,0 +1,143 @@
+// Global styles: fonts, theme colours and a small reset.
+// Component styles live in each component's styles.module.scss.
+
+:root {
+  --font-display: var(--font-inter-tight), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-brand: var(--font-sora), system-ui, sans-serif;
+  // Side padding; never less than a notched phone's safe area
+  --gutter: max(clamp(16px, 2.4vw, 32px), env(safe-area-inset-left), env(safe-area-inset-right));
+  // Height kept clear under the fixed nav (anchors and focused elements)
+  --nav-clearance: 96px;
+}
+
+/* Theme colours are generated from packages/content/src/themes.ts (see app/layout.tsx). */
+
+/* Theme switch reveal: the JS grows a circle on the new snapshot, so turn off the default crossfade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  // Keeps anchor targets and keyboard focus clear of the fixed nav
+  scroll-padding-top: var(--nav-clearance);
+  // No double-tap zoom delay; no grey flash on tap
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  background: var(--canvas);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+  position: fixed;
+  left: var(--gutter);
+  top: calc(12px + env(safe-area-inset-top));
+  z-index: 100;
+  translate: 0 -200%;
+  border-radius: 999px;
+  background: var(--accent);
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-accent);
+  transition: translate 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &:focus-visible {
+    translate: 0 0;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  vertical-align: middle;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

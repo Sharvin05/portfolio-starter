@@ -1,0 +1,10 @@
+@use "mixins" as *;
+
+.root {
+  min-height: 65px;
+}
+
+.missing {
+  @include type-small;
+  color: var(--fg-soft);
+}

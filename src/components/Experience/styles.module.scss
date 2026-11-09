@@ -1,0 +1,23 @@
+@use "mixins" as *;
+
+.root {
+  @include section(clamp(96px, 12vw, 170px));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: clamp(32px, 6vw, 96px);
+
+  @include lg {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: $card-gap;
+  perspective: 1400px;
+}

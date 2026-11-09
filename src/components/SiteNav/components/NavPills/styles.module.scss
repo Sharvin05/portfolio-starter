@@ -1,0 +1,14 @@
+@use "mixins" as *;
+
+.root {
+  display: none;
+  gap: 2px;
+  border-radius: $radius-pill;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  padding: 5px;
+
+  @include xl {
+    display: flex;
+  }
+}

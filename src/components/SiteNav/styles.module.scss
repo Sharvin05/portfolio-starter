@@ -1,0 +1,64 @@
+@use "mixins" as *;
+
+.root {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  padding: calc(12px + env(safe-area-inset-top)) var(--gutter) 0;
+}
+
+// Wide screens (xl): logo left, links centred (three-column grid keeps them in the middle)
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: $radius-pill;
+  border: 1px solid;
+  padding: 8px 8px 8px 16px;
+  transition:
+    background-color 0.3s $ease,
+    border-color 0.3s $ease;
+
+  @include xl {
+    display: grid;
+    min-height: 64px;
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+.barTop {
+  border-color: transparent;
+  background: transparent;
+}
+
+.barScrolled {
+  border-color: var(--glass-border);
+  background: alpha(canvas, 60%);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+
+.logo {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @include xl {
+    justify-self: end;
+  }
+}
+
+// Menu toggle below xl; wide screens show the links in the bar
+.menuToggle {
+  @include xl {
+    display: none;
+  }
+}

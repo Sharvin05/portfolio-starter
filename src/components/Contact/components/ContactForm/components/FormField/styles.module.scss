@@ -1,0 +1,64 @@
+@use "mixins" as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  @include type-label;
+  color: var(--fg);
+}
+
+.control {
+  @include colors;
+  width: 100%;
+  border-radius: $radius-inner;
+  border: 1px solid;
+  background: alpha(canvas, 40%);
+  padding-inline: 16px;
+  font-size: 15px;
+  color: var(--fg);
+  transition-property: color, background-color, border-color, box-shadow;
+
+  &::placeholder {
+    color: alpha(fg, 40%);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border-radius: $radius-inner;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px alpha(accent, 30%);
+  }
+}
+
+.input {
+  height: $control-field;
+}
+
+.textarea {
+  min-height: 160px;
+  resize: vertical;
+  padding-block: 12px;
+  line-height: 1.6;
+}
+
+.idle {
+  border-color: var(--glass-border);
+
+  &:hover {
+    border-color: alpha(fg, 30%);
+  }
+}
+
+.invalid {
+  border-color: var(--accent);
+}
+
+.error {
+  @include type-small;
+  color: var(--accent);
+}

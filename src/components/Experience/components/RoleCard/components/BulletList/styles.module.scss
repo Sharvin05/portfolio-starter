@@ -1,0 +1,24 @@
+@use "mixins" as *;
+
+.root {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  @include type-body;
+  position: relative;
+  padding-left: 22px;
+  color: alpha(fg, 85%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.8em;
+    width: 9px;
+    height: 1px;
+    background: var(--accent);
+  }
+}

@@ -1,0 +1,33 @@
+@use "mixins" as *;
+
+.root {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 16px;
+  border-top: 1px solid var(--line);
+  padding: 22px 0 30px;
+
+  @include sm {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    row-gap: 16px;
+  }
+
+  // Accent bar on the top border; --bar (0..1) scales it from the left
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(var(--bar));
+    transform-origin: left;
+    transition: transform 0.6s $ease-out-soft;
+  }
+}

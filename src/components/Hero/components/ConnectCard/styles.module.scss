@@ -1,0 +1,51 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  position: relative;
+  order: 5;
+  margin: 36px 0 8px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: $radius-card;
+  padding: 14px;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  @include lg {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    order: 0;
+    margin: 0;
+    width: min(380px, 34vw);
+  }
+}
+
+.grab {
+  margin: 2px auto 14px;
+  width: 42px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+}
+
+.head {
+  padding: 0 8px 14px;
+}
+
+.title {
+  @include type-title;
+}
+
+.subtitle {
+  @include type-small;
+  margin-top: 4px;
+  color: var(--fg-soft);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

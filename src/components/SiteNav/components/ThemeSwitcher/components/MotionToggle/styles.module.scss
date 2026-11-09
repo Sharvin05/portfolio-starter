@@ -1,0 +1,57 @@
+@use "mixins" as *;
+
+.root {
+  @include type-label;
+  @include colors;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: $radius-inner;
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--fg);
+
+  &:hover {
+    background: var(--glass);
+  }
+
+  &:focus-visible {
+    border-radius: $radius-inner;
+  }
+}
+
+// Switch track and knob
+.track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: $radius-pill;
+  background: var(--glass-strong);
+  box-shadow: inset 0 0 0 1px var(--glass-border);
+  transition: background-color 0.2s $ease;
+
+  .root[aria-checked="true"] & {
+    background: var(--accent);
+  }
+}
+
+.knob {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: $radius-pill;
+  background: var(--fg);
+  transition:
+    translate 0.2s $ease,
+    background-color 0.2s $ease;
+
+  .root[aria-checked="true"] & {
+    translate: 16px 0;
+    background: var(--on-accent);
+  }
+}

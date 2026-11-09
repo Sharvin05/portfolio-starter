@@ -1,0 +1,27 @@
+@use "mixins" as *;
+
+.root {
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+}
+
+.xl {
+  width: 100%;
+  height: auto;
+}
+
+// Faint halo around the A itself on the large version
+.aGlow {
+  filter: drop-shadow(0 0 14px alpha(fg, 22%));
+}

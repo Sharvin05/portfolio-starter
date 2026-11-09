@@ -1,0 +1,39 @@
+@use "mixins" as *;
+
+.base {
+  @include colors;
+  display: grid;
+  height: $control-md;
+  place-items: center;
+  border-radius: $radius-pill;
+  border: 1px solid;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.round {
+  width: $control-md;
+}
+
+.wide {
+  width: 62px;
+}
+
+.solid {
+  border-color: transparent;
+  background: var(--fg);
+  color: var(--canvas);
+
+  &:hover {
+    background: alpha(fg, 85%);
+  }
+}
+
+.glass {
+  border-color: var(--glass-border);
+  background: var(--glass);
+
+  &:hover {
+    background: var(--glass-strong);
+  }
+}

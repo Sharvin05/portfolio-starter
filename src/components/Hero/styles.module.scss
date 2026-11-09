@@ -1,0 +1,22 @@
+@use "mixins" as *;
+
+.root {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  min-height: 100svh;
+  grid-template-rows: 1fr auto;
+  padding: 90px var(--gutter) 0;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 0 28px;
+
+  @include lg {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,71 @@
+@use "mixins" as *;
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.title {
+  @include type-title;
+  @include colors(0.3s);
+}
+
+.meta {
+  @include type-body;
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  color: var(--fg-soft);
+}
+
+.company {
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.companyLink {
+  @include colors;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: var(--fg);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.type {
+  @include type-caption;
+  border-radius: $radius-pill;
+  background: var(--glass-strong);
+  padding: 4px 10px;
+  font-weight: 500;
+  color: var(--fg-soft);
+}
+
+.when {
+  @include type-small;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: left;
+  color: var(--fg-soft);
+
+  @include sm {
+    text-align: right;
+  }
+}
+
+.range {
+  margin-bottom: 2px;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg);
+}

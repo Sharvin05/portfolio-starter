@@ -1,0 +1,26 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: $card-gap;
+
+  @include lg {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $card-gap;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

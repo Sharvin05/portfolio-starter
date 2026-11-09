@@ -1,0 +1,52 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  display: flex;
+  flex-direction: column;
+  border-radius: $radius-card;
+  padding: $card-pad;
+  transition:
+    border-color 0.35s $ease,
+    background-color 0.35s $ease,
+    box-shadow 0.35s $ease;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--glass-strong);
+    @include accent-glow(40%);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  @include colors(0.3s);
+  display: grid;
+  width: $control-sm;
+  height: $control-sm;
+  place-items: center;
+  border-radius: $radius-tile;
+  background: var(--glass-strong);
+  color: var(--fg);
+
+  .root:hover & {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+.title {
+  @include type-subtitle;
+}
+
+.count {
+  @include type-caption;
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+  color: var(--fg-soft);
+}

@@ -1,0 +1,41 @@
+@use "mixins" as *;
+
+.root {
+  @include type-label;
+  @include colors;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: $radius-pill;
+  padding: 9px 16px;
+}
+
+.idle {
+  color: var(--fg-soft);
+
+  &:hover {
+    color: var(--fg);
+  }
+}
+
+.active {
+  color: var(--fg);
+}
+
+// Slides between pills as the active section changes
+.indicator {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  border-radius: $radius-pill;
+  background: var(--glass-strong);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: $radius-pill;
+  background: var(--accent);
+}

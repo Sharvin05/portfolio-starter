@@ -1,0 +1,17 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  border-radius: $radius-card;
+  padding: $card-pad;
+}
+
+.title {
+  @include type-title;
+}
+
+.blurb {
+  @include type-body;
+  margin-top: 8px;
+  color: var(--fg-soft);
+}

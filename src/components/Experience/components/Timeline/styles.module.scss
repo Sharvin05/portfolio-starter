@@ -1,0 +1,70 @@
+@use "mixins" as *;
+
+.root {
+  position: sticky;
+  top: 96px;
+  display: none;
+
+  @include lg {
+    display: block;
+  }
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  color: var(--fg-soft);
+}
+
+.countActive {
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.years {
+  @include type-number;
+  margin: 16px 0 14px;
+  white-space: nowrap;
+}
+
+.company {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.role {
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--fg-soft);
+}
+
+// Grey track, with an accent fill that --fill (0..1) scales down from the top
+.rail {
+  position: relative;
+  margin-top: 44px;
+  max-width: 360px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+  }
+
+  &::before {
+    background: var(--line);
+  }
+
+  &::after {
+    background: var(--accent);
+    transform: scaleY(var(--fill));
+    transform-origin: top;
+    transition: transform 0.5s $ease-out-soft;
+  }
+}

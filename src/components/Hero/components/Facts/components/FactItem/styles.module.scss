@@ -1,0 +1,36 @@
+@use "mixins" as *;
+
+.root {
+  @include colors;
+  display: flex;
+  cursor: default;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1.4;
+}
+
+.idle {
+  color: var(--fg-soft);
+}
+
+.active {
+  color: var(--accent);
+}
+
+.title {
+  @include type-label;
+  @include colors;
+}
+
+.titleIdle {
+  color: var(--fg);
+}
+
+.titleActive {
+  color: var(--accent);
+}
+
+.detail {
+  @include type-small;
+  color: var(--fg-soft);
+}

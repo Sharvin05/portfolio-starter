@@ -1,0 +1,45 @@
+@use "mixins" as *;
+
+.root {
+  display: flex;
+  min-height: 340px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.badge {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: $radius-pill;
+  background: alpha(success, 15%);
+  color: var(--success);
+}
+
+.title {
+  @include type-title;
+}
+
+.body {
+  @include type-body;
+  max-width: 44ch;
+  color: var(--fg-soft);
+}
+
+.action {
+  @include type-label;
+  @include colors;
+  margin-top: 8px;
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: alpha(fg, 30%);
+  text-underline-offset: 4px;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+}

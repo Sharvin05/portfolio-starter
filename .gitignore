@@ -1,0 +1,21 @@
+# Generated from the root .gitignore by `pnpm sync:gitignore`. Do not edit by hand:
+# change the shared block in the root .gitignore and run the command again.
+
+# Dependencies and build output
+node_modules
+.next
+.next-build
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files and keys: never commit (only .env.example is shared)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local tooling
+.vercel
+.DS_Store

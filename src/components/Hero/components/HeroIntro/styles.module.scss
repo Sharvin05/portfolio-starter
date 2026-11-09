@@ -1,0 +1,55 @@
+@use "mixins" as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  @include type-label;
+  font-weight: 400;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-soft);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-pill;
+  background: var(--success);
+  box-shadow: 0 0 0 4px alpha(success, 18%);
+}
+
+.title {
+  @include type-display;
+  max-width: 12ch;
+}
+
+.row {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.lede {
+  @include type-lede;
+  max-width: 46ch;
+}
+
+.ctas {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+
+  @include sm {
+    width: auto;
+  }
+}

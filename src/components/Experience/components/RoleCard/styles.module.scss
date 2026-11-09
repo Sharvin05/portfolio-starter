@@ -1,0 +1,31 @@
+@use "mixins" as *;
+
+.root {
+  transform-origin: top;
+  scroll-margin-top: 96px;
+  border-radius: $radius-card;
+  border: 1px solid;
+  padding: $card-pad;
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  transition:
+    border-color 0.35s $ease,
+    background-color 0.35s $ease,
+    box-shadow 0.35s $ease;
+
+  &:hover {
+    border-color: var(--accent);
+    background: alpha(fg, 15%);
+    @include accent-glow(45%);
+  }
+}
+
+.idle {
+  border-color: var(--glass-border);
+  background: var(--glass);
+}
+
+.active {
+  border-color: alpha(accent, 45%);
+  background: var(--glass-strong);
+}

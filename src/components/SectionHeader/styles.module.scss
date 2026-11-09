@@ -1,0 +1,30 @@
+@use "mixins" as *;
+
+.root {
+  margin-bottom: clamp(44px, 6vw, 88px);
+  max-width: 980px;
+}
+
+.kicker {
+  @include kicker;
+}
+
+.title {
+  @include type-section;
+  margin-top: 20px;
+}
+
+.lede {
+  @include type-lede;
+  margin-top: 20px;
+}
+
+// Page header (h1): no gap below, page-size headline
+.page {
+  margin-bottom: 0;
+}
+
+.pageTitle {
+  @include type-display;
+  max-width: 12ch;
+}

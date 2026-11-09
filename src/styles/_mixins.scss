@@ -1,0 +1,213 @@
+// Shared SCSS helpers. Use in a component with:  @use "mixins" as *;
+// Colours stay CSS custom properties (set per theme in app/globals.scss).
+
+// ---------- Breakpoints (mobile first) ----------
+$sm: 561px; // large phones and up
+$lg: 981px; // desktop layout
+$xl: 1280px; // full nav bar
+
+@mixin sm {
+  @media (min-width: $sm) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: $lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: $xl) {
+    @content;
+  }
+}
+@mixin below-sm {
+  @media (max-width: ($sm - 1px)) {
+    @content;
+  }
+}
+
+// ---------- Shape ----------
+$radius-card: 24px; // cards and panels
+$radius-inner: 16px; // rows, fields and alerts inside a card
+$radius-tile: 12px; // icon tiles
+$radius-small: 8px;
+$radius-pill: 999px;
+
+// ---------- Controls ----------
+$control-lg: 52px; // primary buttons
+$control-field: 48px; // text inputs
+$control-md: 46px; // icon buttons in the nav
+$control-sm: 40px; // tabs and icon tiles
+
+// ---------- Spacing ----------
+$card-pad: clamp(22px, 2.6vw, 32px);
+$card-pad-lg: clamp(24px, 3vw, 40px);
+$card-gap: 20px;
+
+// ---------- Type scale ----------
+// One scale for the whole site. Use these instead of setting font sizes by hand.
+
+/// Page headline (hero and page h1).
+@mixin type-display {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8.4vw, 128px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+/// Section headline (h2).
+@mixin type-section {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.6vw, 86px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+}
+
+/// Large figures such as year ranges.
+@mixin type-number {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+
+/// Card and panel titles.
+@mixin type-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/// Small card titles.
+@mixin type-subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+/// Intro paragraph under a headline.
+@mixin type-lede {
+  max-width: 54ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-soft);
+
+  @include sm {
+    font-size: 17px;
+  }
+}
+
+/// Body text inside cards.
+@mixin type-body {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/// Buttons, tabs, nav items, field labels.
+@mixin type-label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+/// Secondary lines (details, meta, helper text).
+@mixin type-small {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/// Counts, chips, captions.
+@mixin type-caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/// Small uppercase labels.
+@mixin type-overline {
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+// ---------- Motion ----------
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+/// Colour transitions (text, background, border).
+@mixin colors($duration: 0.2s) {
+  transition:
+    color $duration $ease,
+    background-color $duration $ease,
+    border-color $duration $ease,
+    text-decoration-color $duration $ease,
+    fill $duration $ease,
+    stroke $duration $ease;
+}
+
+// ---------- Colour helpers ----------
+/// A theme colour at partial strength, e.g. alpha(accent, 40%).
+@function alpha($token, $amount) {
+  @return color-mix(in srgb, var(--#{$token}) #{$amount}, transparent);
+}
+
+// ---------- Surfaces ----------
+/// Frosted glass panel used for cards across the site.
+@mixin glass($blur: 22px) {
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur($blur) saturate(1.4);
+  -webkit-backdrop-filter: blur($blur) saturate(1.4);
+}
+
+/// Accent glow ring used by highlighted cards on hover.
+@mixin accent-glow($strength: 40%) {
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 24px 60px -20px alpha(accent, $strength);
+}
+
+// ---------- Type ----------
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Small uppercase label with a short accent line before it (section kickers).
+@mixin kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+
+  &::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+}
+
+/// Section padding used by every page section.
+@mixin section($top: clamp(64px, 8vw, 120px), $bottom: clamp(64px, 8vw, 120px)) {
+  position: relative;
+  z-index: 10;
+  padding: $top var(--gutter) $bottom;
+}
+
+/// A parent with this global class makes child tags/titles react to its hover.
+$hover-group: "hover-group";

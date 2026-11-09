@@ -1,0 +1,16 @@
+@use "mixins" as *;
+
+.root {
+  @include section(clamp(96px, 12vw, 170px), clamp(48px, 6vw, 80px));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: $card-gap;
+
+  @include lg {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}

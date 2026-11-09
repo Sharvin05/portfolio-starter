@@ -1,0 +1,23 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: $radius-card;
+  padding: $card-pad;
+}
+
+.title {
+  @include type-label;
+  font-weight: 400;
+  padding: 0 4px 4px;
+  color: var(--fg-soft);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

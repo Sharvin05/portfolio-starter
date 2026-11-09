@@ -1,0 +1,6 @@
+// The canvas wrapper must stay fixed behind the page (the 3D library sets inline styles).
+.canvas {
+  position: fixed !important;
+  inset: 0;
+  z-index: 0;
+}
