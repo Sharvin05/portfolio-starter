@@ -12,7 +12,7 @@ export const profile = {
   ] satisfies HeadlinePart[],
   lede: "Full Stack Software Engineer. I build web and mobile apps, from idea to launch. Yes, including the boring parts.",
   /** Main button in the hero. */
-  cta: { label: "See My Work", href: "/work" },
+  cta: { label: "See My Work", href: "/#work" },
 } as const;
 
 /** The "Let's Connect" card in the hero, also reused in the phone menu and Contact. */
@@ -40,7 +40,7 @@ export const facts: Fact[] = [
 export const nav: NavItem[] = [
   { label: "About", href: "/#" },
   { label: "Experience", href: "/#experience" },
-  { label: "Work", href: "/work" },
+  { label: "Work", href: "/#work" },
   { label: "Skills", href: "/#skills" },
   { label: "Education", href: "/#education" },
   { label: "Contact", href: "/#contact" },

@@ -10,10 +10,4 @@ export const site = {
   shortName: "Alex",
   title: `${profile.name} — ${profile.role}`,
   description: `${profile.name}, ${profile.role} building web and mobile apps.`,
-  pages: {
-    work: {
-      title: `Work, Coming Soon — ${profile.name}`,
-      description: `Case studies of the apps ${profile.name} has built are on the way.`,
-    },
-  },
 } as const;

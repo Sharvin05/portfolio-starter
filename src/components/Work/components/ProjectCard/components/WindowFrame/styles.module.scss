@@ -1,0 +1,56 @@
+@use "mixins" as *;
+
+.root {
+  overflow: hidden;
+  border-radius: $radius-inner;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  // Keeps the rounded corners while the picture inside scales
+  isolation: isolate;
+}
+
+.bar {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-inline: 14px;
+}
+
+.dots {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+
+  > span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: alpha(fg, 22%);
+    transition: background-color 0.35s $ease;
+  }
+
+  // The first dot lights up when the card is hovered
+  :global(.#{$hover-group}):hover & > span:first-child {
+    background: var(--accent);
+  }
+}
+
+.label {
+  @include truncate;
+  @include type-caption;
+  flex: 1;
+  min-width: 0;
+  // Centred like a real address bar; the right padding balances the dots
+  padding-right: 39px;
+  text-align: center;
+  color: var(--fg-soft);
+}
+
+.view {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  // Clips the zooming screenshot, but unlike overflow: hidden still lets taller content (the terminal on phones) grow the window
+  contain: paint;
+}

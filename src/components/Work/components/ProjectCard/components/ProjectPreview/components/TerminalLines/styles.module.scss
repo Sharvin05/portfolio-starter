@@ -1,0 +1,57 @@
+@use "mixins" as *;
+
+.root {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(18px, 3vw, 28px);
+  background: alpha(canvas, 70%);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(12.5px, 1.3vw, 14px);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--fg);
+}
+
+.line {
+  display: block;
+}
+
+.prompt {
+  margin-right: 10px;
+  color: var(--accent);
+  user-select: none;
+}
+
+.result {
+  display: block;
+  margin-top: 6px;
+  color: var(--success);
+  transition: color 0.4s $ease;
+}
+
+// Not typed yet: keeps its space so the window doesn't jump, and stays readable for screen readers
+.pending {
+  color: transparent;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.15em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

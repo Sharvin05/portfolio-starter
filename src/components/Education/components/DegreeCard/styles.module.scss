@@ -7,8 +7,6 @@
   gap: 32px;
   border-radius: $radius-card;
   padding: $card-pad-lg;
-  transform-style: preserve-3d;
-  will-change: transform;
 
   @include lg {
     position: sticky;

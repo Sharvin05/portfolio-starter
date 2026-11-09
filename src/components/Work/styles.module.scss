@@ -1,0 +1,25 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $card-gap;
+  list-style: none;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Three across keeps all six projects within about one and a half screens
+  @include xl {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+}

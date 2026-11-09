@@ -1,6 +1,6 @@
 /**
  * Your logo mark, drawn in a 120×120 box: two strokes (drawn as pen lines) and a filled bar.
- * Used for the nav logo, the /work page logo, the favicon and the app icons.
+ * Used for the nav logo, the favicon and the app icons.
  * The strokes take the theme's text colour; the bar keeps `trailColour` on every theme.
  */
 export const brandMark = {

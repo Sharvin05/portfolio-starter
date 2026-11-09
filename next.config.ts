@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
     return config;
   },
   turbopack: { resolveAlias: { "@content": contentEntry } },
+  // Work used to be its own page; it's now a section on the home page.
+  redirects: async () => [{ source: "/work", destination: "/#work", permanent: true }],
 };
 
 export default nextConfig;

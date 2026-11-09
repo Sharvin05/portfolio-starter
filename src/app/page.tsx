@@ -7,6 +7,7 @@ import { Experience } from "@/components/Experience";
 import { Footer } from "@/components/Footer";
 import { SiteNav } from "@/components/SiteNav";
 import { Skills } from "@/components/Skills";
+import { Work } from "@/components/Work";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <Experience />
+        <Work />
         <Skills />
         <Education />
         <Contact />

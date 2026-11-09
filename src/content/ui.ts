@@ -33,6 +33,13 @@ export const ui = {
     present: "Present",
   },
 
+  work: {
+    /** Read before a project's links, e.g. "Ludo links". */
+    linksLabel: (title: string) => `${title} links`,
+    /** Shown before each terminal command. */
+    prompt: "$",
+  },
+
   skills: {
     allTab: "All",
     allTitle: "Everything",
@@ -45,10 +52,6 @@ export const ui = {
     yearsLabel: "years of engineering",
     subjectsLabel: "featured subjects",
     affiliatedTo: "Affiliated to",
-  },
-
-  comingSoon: {
-    logoLabel: (name: string) => `${name} logo. Activate to fire the light trail.`,
   },
 
   contactForm: {

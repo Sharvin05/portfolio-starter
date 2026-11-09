@@ -8,7 +8,7 @@ export * from "./experience";
 export * from "./skills";
 export * from "./education";
 export * from "./contact";
-export * from "./comingSoon";
+export * from "./work";
 export * from "./site";
 export * from "./brand";
 export * from "./themes";

@@ -50,13 +50,40 @@ export interface NavItem {
   href: `/${string}`;
 }
 
-export interface ComingSoonCopy {
-  kicker: string;
-  title: HeadlinePart[];
-  lede: string;
-  hint: string;
-  primary: { label: string; href: string };
-  secondary: { label: string; href: string };
+/** An imported image (`import shot from "./shot.jpg"`), so Next.js knows its size and can optimise it. */
+export interface ProjectImage {
+  src: string;
+  width: number;
+  height: number;
+  blurDataURL?: string;
+}
+
+/** What the card's window shows: a screenshot, or terminal commands that type themselves in. */
+export type ProjectPreview =
+  | { type: "image"; image: ProjectImage; alt: string }
+  | { type: "terminal"; title: string; lines: string[]; /** Shown once the commands finish, e.g. "Ready on http://localhost:3000". */ result?: string };
+
+export interface ProjectLink {
+  label: string;
+  href: string;
+  /** Icon after the label; defaults to an up-right arrow. */
+  icon?: "github" | "send";
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  /** Small label above the title, e.g. "End to end" or "Side project". */
+  kind: string;
+  summary: string;
+  /** Shown in the window's address bar. */
+  url: string;
+  /** Without one, the window shows the project's address. */
+  preview?: ProjectPreview;
+  /** Highlighted note next to the kind, e.g. "Open to collaborators". */
+  note?: string;
+  /** The first link is the main button. */
+  links: [ProjectLink, ...ProjectLink[]];
 }
 
 export interface SkillCategory {
