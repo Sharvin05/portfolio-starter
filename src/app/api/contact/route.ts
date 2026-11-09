@@ -13,7 +13,8 @@ const api = ui.contactForm.api;
 const reply = (body: ContactResponse, status = 200, headers?: HeadersInit) => NextResponse.json(body, { status, headers });
 
 function clientIp(req: NextRequest): string {
-  return req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  // Only trust headers the host sets itself (Vercel sets x-forwarded-for); cf-connecting-ip is client-spoofable off Cloudflare
+  return req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 }
 
 function readField(body: unknown, key: string): string {

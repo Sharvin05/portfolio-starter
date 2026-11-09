@@ -59,6 +59,7 @@ export const ui = {
     validation: {
       nameMissing: "Enter your name.",
       nameTooLong: (max: number) => `Keep your name under ${max} characters.`,
+      nameInvalid: "Keep your name on one line, without tabs.",
       emailMissing: "Enter your email so I can reply.",
       emailInvalid: "That email doesn't look right.",
       messageMissing: "Write a short message.",

@@ -24,6 +24,8 @@ export const LIMITS = {
 } as const;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// The name goes into the email subject, which can't hold line breaks or other control characters
+const CONTROL_CHARS = /[\u0000-\u001f\u007f]/;
 
 function readString(source: Record<string, unknown>, key: string): string {
   const value = source[key];
@@ -41,6 +43,7 @@ export function validateContact(input: unknown): ValidationResult {
 
   if (!data.name) errors.name = v.nameMissing;
   else if (data.name.length > LIMITS.name.max) errors.name = v.nameTooLong(LIMITS.name.max);
+  else if (CONTROL_CHARS.test(data.name)) errors.name = v.nameInvalid;
 
   if (!data.email) errors.email = v.emailMissing;
   else if (data.email.length > LIMITS.email.max || !EMAIL_PATTERN.test(data.email)) errors.email = v.emailInvalid;

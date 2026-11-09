@@ -80,3 +80,4 @@ Locally the form already works: messages are printed in the terminal instead of 
 | `pnpm build` | Build for production |
 | `pnpm start` | Run the production build |
 | `pnpm typecheck` | Check types, including your content |
+| `pnpm test` | Run the unit tests |
