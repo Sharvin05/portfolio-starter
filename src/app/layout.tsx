@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight, Sora } from "next/font/google";
-import { site, ui } from "@content";
+import { profile, site, ui } from "@content";
 import { motionInitScript } from "@/lib/motionPauseScript";
 import { DEFAULT_THEME, getTheme, themeCss, themeInitScript } from "@/lib/theme/themes";
 import "./globals.scss";
@@ -14,7 +14,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: site.title,
   description: site.description,
-  openGraph: { title: site.title, description: site.description, url: "/", type: "website" },
+  alternates: { canonical: "/" },
+  // The share image comes from app/opengraph-image.tsx
+  openGraph: { title: site.title, description: site.description, url: "/", type: "website", siteName: profile.name, locale: site.locale },
+  twitter: { card: "summary_large_image", title: site.title, description: site.description },
 };
 
 export const viewport: Viewport = { themeColor: getTheme(DEFAULT_THEME).tokens.canvas, viewportFit: "cover" };
