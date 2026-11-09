@@ -12,6 +12,16 @@ export const ui = {
   },
   backToTop: "Back to Top",
 
+  consent: {
+    /** Screen-reader name of the banner. */
+    label: "Cookie consent",
+    message: "I'd like to use analytics cookies to see how people use this site, including session recordings.",
+    accept: "Accept Analytics",
+    reject: "Reject Analytics",
+    /** Footer button that reopens the banner. */
+    settings: "Cookie Settings",
+  },
+
   nav: {
     label: "Main",
     homeLabel: (name: string) => `${name}, back to top`,

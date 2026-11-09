@@ -1,7 +1,8 @@
-import { ui } from "@content";
+import { footer, ui } from "@content";
 import { Icon } from "@/components/Icon";
 import { BrandLogo } from "@/components/BrandLogo";
 import type { CreditEntry } from "@/lib/photoCredits";
+import { CookieSettings } from "./components/CookieSettings";
 import { PhotoCredits } from "./components/PhotoCredits";
 import styles from "./styles.module.scss";
 
@@ -26,6 +27,10 @@ export function Footer({ name, note, credits = [] }: FooterProps) {
       <a href="#" className={styles.top}>
         {ui.backToTop} <Icon name="arrow-up" size={16} />
       </a>
+      <a href={footer.privacy.href} className={styles.link}>
+        {footer.privacy.label}
+      </a>
+      <CookieSettings />
       {credits.length > 0 && <PhotoCredits credits={credits} />}
     </footer>
   );

@@ -173,3 +173,27 @@ export interface InterestsTeaser extends SectionIntro {
   cta: { label: string; href: `/${string}` };
   photo?: Photo;
 }
+
+/** A list item in a policy section: plain text, or a bold term followed by its explanation. */
+export type PolicyItem = string | { term: string; text: string };
+
+/** One numbered section of the privacy policy. */
+export interface PolicySection {
+  id: string;
+  title: string;
+  body: string[];
+  items?: PolicyItem[];
+  /** Shown after the items, e.g. links to each provider's own privacy policy. */
+  links?: { label: string; href: string }[];
+}
+
+/** The /privacy page. */
+export interface PrivacyPage {
+  meta: { title: string; description: string };
+  intro: SectionIntro;
+  /** ISO date ("2026-11-10") plus the text shown for it. */
+  updated: { date: `${number}-${number}-${number}`; label: string };
+  /** Screen-reader name of the contents list. */
+  contentsLabel: string;
+  sections: PolicySection[];
+}

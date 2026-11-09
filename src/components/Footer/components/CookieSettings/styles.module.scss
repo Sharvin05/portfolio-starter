@@ -1,0 +1,27 @@
+@use "mixins" as *;
+
+.root {
+  @include colors;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  align-self: flex-start;
+  font: inherit;
+  font-weight: 500;
+  color: var(--fg-soft);
+  touch-action: manipulation;
+
+  &:hover {
+    color: var(--fg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: $radius-small;
+  }
+
+  @include sm {
+    align-self: auto;
+  }
+}

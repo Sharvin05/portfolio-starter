@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight, Sora } from "next/font/google";
 import { profile, site, ui } from "@content";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { motionInitScript } from "@/lib/motionPauseScript";
 import { DEFAULT_THEME, getTheme, themeCss, themeInitScript } from "@/lib/theme/themes";
 import "./globals.scss";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {ui.skipLink}
         </a>
         {children}
+        <ConsentBanner />
       </body>
     </html>
   );

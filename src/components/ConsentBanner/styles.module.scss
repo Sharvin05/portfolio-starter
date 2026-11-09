@@ -1,0 +1,41 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  position: fixed;
+  z-index: 60; // above the nav (50), below the skip link (100)
+  inset-inline: var(--gutter);
+  bottom: max(16px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+  border-radius: $radius-card;
+  padding: 20px;
+
+  @include sm {
+    inset-inline-end: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: rise 0.4s $ease-out-soft both;
+  }
+}
+
+.message {
+  @include type-small;
+  color: var(--fg);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}

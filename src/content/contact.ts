@@ -23,5 +23,6 @@ export const contact = {
 } as const;
 
 export const footer = {
+  privacy: { label: "Privacy Policy", href: "/privacy" },
   note: "Built with Next.js.",
 } as const;

@@ -14,3 +14,4 @@ export * from "./site";
 export * from "./brand";
 export * from "./themes";
 export * from "./ui";
+export * from "./privacy";
