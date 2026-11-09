@@ -6,7 +6,7 @@ import { useReducedMotion } from "motion/react";
 import { useMotionPaused } from "@/lib/motionPause";
 import type { ActiveCategory } from "../../types";
 import { SphereTag } from "./components/SphereTag";
-import { fibonacciSphere, rotate } from "./geometry";
+import { facingAngles, fibonacciSphere, rotate } from "./geometry";
 import styles from "./styles.module.scss";
 
 export interface SphereSkill {
@@ -22,6 +22,8 @@ interface SkillSphereProps {
 const AUTO_SPIN = 0.0025; // radians per frame when idle
 const DRAG_SPEED = 0.006;
 const FRICTION = 0.94;
+const FOCUS_EASE = 0.08; // share of the remaining turn covered per frame
+const MAX_TILT = 1.2;
 
 // Narrow screens get a slightly tighter sphere so pills stay inside the frame
 const radiusFor = (width: number) => width * (width < 480 ? 0.34 : 0.4);
@@ -38,6 +40,21 @@ export function SkillSphere({ skills, activeCategory }: SkillSphereProps) {
   // Read inside the animation loop without restarting it
   const activeRef = useRef<ActiveCategory>(activeCategory);
   activeRef.current = activeCategory;
+  // Angles the sphere turns to so the selected group faces the viewer; cleared once reached or dragged
+  const focusRef = useRef<{ rx: number; ry: number } | null>(null);
+
+  useEffect(() => {
+    if (activeCategory === null) {
+      focusRef.current = null;
+      return;
+    }
+    const centre = points.reduce(
+      (sum, p, i) => (skills[i]?.categoryId === activeCategory ? { x: sum.x + p.x, y: sum.y + p.y, z: sum.z + p.z } : sum),
+      { x: 0, y: 0, z: 0 },
+    );
+    const { rx, ry } = facingAngles(centre);
+    focusRef.current = { rx: Math.max(-MAX_TILT, Math.min(MAX_TILT, rx)), ry };
+  }, [activeCategory, points, skills]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -66,12 +83,23 @@ export function SkillSphere({ skills, activeCategory }: SkillSphereProps) {
     };
 
     const tick = () => {
-      if (!dragging) {
-        const target = reduce || hovering ? 0 : AUTO_SPIN;
+      const focus = focusRef.current;
+      if (focus && !dragging) {
+        // Turn the short way round; jump straight there under reduced motion
+        const k = reduce ? 1 : FOCUS_EASE;
+        const dx = focus.rx - rx;
+        const dy = Math.atan2(Math.sin(focus.ry - ry), Math.cos(focus.ry - ry));
+        rx += dx * k;
+        ry += dy * k;
+        vx = vy = 0;
+        if (Math.abs(dx) + Math.abs(dy) < 0.002) focusRef.current = null;
+      } else if (!dragging) {
+        // Hold still while a group is selected so it stays in front
+        const target = reduce || hovering || activeRef.current !== null ? 0 : AUTO_SPIN;
         vx *= FRICTION;
         vy = vy * FRICTION + target * (1 - FRICTION);
       }
-      rx = Math.max(-1.2, Math.min(1.2, rx + vx));
+      rx = Math.max(-MAX_TILT, Math.min(MAX_TILT, rx + vx));
       ry += vy;
       draw();
       frame = visible ? requestAnimationFrame(tick) : 0;
@@ -79,6 +107,7 @@ export function SkillSphere({ skills, activeCategory }: SkillSphereProps) {
 
     const onDown = (e: PointerEvent) => {
       dragging = true;
+      focusRef.current = null;
       lastX = e.clientX;
       lastY = e.clientY;
       root.setPointerCapture(e.pointerId);

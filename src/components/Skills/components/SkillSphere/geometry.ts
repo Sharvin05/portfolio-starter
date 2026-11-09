@@ -23,3 +23,9 @@ export function rotate(p: Point3, rx: number, ry: number): Point3 {
   const cosX = Math.cos(rx), sinX = Math.sin(rx);
   return { x: x1, y: p.y * cosX - z1 * sinX, z: p.y * sinX + z1 * cosX };
 }
+
+/** The `rotate` angles that turn point `p` to face the viewer (straight ahead on +z). */
+export function facingAngles(p: Point3): { rx: number; ry: number } {
+  const ry = Math.atan2(-p.x, p.z);
+  return { rx: Math.atan2(p.y, Math.hypot(p.x, p.z)), ry };
+}
