@@ -36,6 +36,8 @@ html {
   scroll-behavior: smooth;
   // Keeps anchor targets and keyboard focus clear of the fixed nav
   scroll-padding-top: var(--nav-clearance);
+  // Chrome restores the scroll on reload through scroll anchoring, which landed ~36px down from the top and hid the hero's Let's Connect card
+  overflow-anchor: none;
   // No double-tap zoom delay; no grey flash on tap
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;

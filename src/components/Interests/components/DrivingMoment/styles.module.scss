@@ -1,0 +1,50 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.frame {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-card;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  will-change: transform;
+
+  @include sm {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.photo {
+  height: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: clamp(32px, 4vw, 56px);
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.label {
+  @include kicker;
+}
+
+.list {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.item {
+  @include type-title;
+  border-bottom: 1px solid var(--line);
+  padding-block: 14px;
+  text-wrap: balance;
+}

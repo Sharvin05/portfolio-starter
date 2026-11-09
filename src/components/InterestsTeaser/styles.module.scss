@@ -1,0 +1,42 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.card {
+  @include glass;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  border-radius: $radius-card;
+  padding: 10px;
+
+  @include lg {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $card-pad;
+
+  // The card is the section here, so the header's usual gap below is too much
+  > :first-child {
+    margin-bottom: 0;
+  }
+}
+
+.action {
+  margin-top: 32px;
+}
+
+.frame {
+  overflow: hidden;
+  min-height: 280px;
+  border-radius: $radius-inner;
+  background: var(--surface);
+}

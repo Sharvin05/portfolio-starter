@@ -1,0 +1,10 @@
+@use "mixins" as *;
+
+// The page intro fills the first screen on its own, its headline sitting low like the home hero
+.intro {
+  @include section(var(--nav-clearance), clamp(48px, 8vh, 96px));
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: flex-end;
+}

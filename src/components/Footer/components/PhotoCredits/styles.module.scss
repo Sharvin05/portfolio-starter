@@ -1,0 +1,84 @@
+@use "mixins" as *;
+
+.root {
+  width: 100%;
+}
+
+.toggle {
+  @include colors;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 500;
+  color: var(--fg-soft);
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    color: var(--fg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: $radius-small;
+  }
+}
+
+// Points down when closed, up when open
+.chevron {
+  transform: rotate(180deg);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 0.2s $ease;
+  }
+
+  .root[open] & {
+    transform: none;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 32px;
+  padding-block: 8px 4px;
+  list-style: none;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.subject {
+  color: var(--fg);
+}
+
+.link {
+  @include colors;
+  text-decoration: underline;
+  text-decoration-color: alpha(fg-soft, 40%);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
+  }
+}

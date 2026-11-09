@@ -51,7 +51,7 @@ export interface NavItem {
 }
 
 /** An imported image (`import shot from "./shot.jpg"`), so Next.js knows its size and can optimise it. */
-export interface ProjectImage {
+export interface ContentImage {
   src: string;
   width: number;
   height: number;
@@ -60,7 +60,7 @@ export interface ProjectImage {
 
 /** What the card's window shows: a screenshot, or terminal commands that type themselves in. */
 export type ProjectPreview =
-  | { type: "image"; image: ProjectImage; alt: string }
+  | { type: "image"; image: ContentImage; alt: string }
   | { type: "terminal"; title: string; lines: string[]; /** Shown once the commands finish, e.g. "Ready on http://localhost:3000". */ result?: string };
 
 export interface ProjectLink {
@@ -112,4 +112,64 @@ export interface Degree {
   grade: { value: string; scale: string; label: string };
   startYear: number;
   endYear: number;
+}
+
+/** Who took a photo and under which licence, listed under "Photo Credits" in the footer. */
+export interface PhotoCredit {
+  author: string;
+  /** e.g. "CC BY-SA 4.0" or "Public domain". */
+  licence: string;
+  /** The photo's own page, e.g. on Wikimedia Commons. */
+  source: string;
+  licenceUrl?: string;
+}
+
+/** A photograph with its alt text and, for licensed photos, its credit. */
+export interface Photo {
+  image: ContentImage;
+  alt: string;
+  credit?: PhotoCredit;
+  /** The part to keep in view when the frame crops the photo (CSS object-position), e.g. "center top". */
+  focus?: string;
+}
+
+/** Kicker, headline and intro line at the top of a section. */
+export interface SectionIntro {
+  kicker: string;
+  title: HeadlinePart[];
+  lede: string;
+}
+
+export interface InterestCard {
+  id: string;
+  title: string;
+  detail: string;
+  photo?: Photo;
+}
+
+export interface Game {
+  title: string;
+  /** Short label above the title, e.g. "Racing". */
+  genre: string;
+}
+
+/** The /interests page. */
+export interface InterestsPage {
+  meta: { title: string; description: string };
+  intro: SectionIntro;
+  /** The driving section: one big photo and two short lists (e.g. "In the sim" and "On the road"). */
+  driving: SectionIntro & { photo?: Photo; columns: { label: string; items: string[] }[] };
+  sports: SectionIntro & { items: InterestCard[] };
+  games: SectionIntro & { items: Game[] };
+  /** The first card is shown wide. */
+  loves: SectionIntro & { items: InterestCard[] };
+  /** Heading above the contact form at the bottom of the page. */
+  close: SectionIntro;
+}
+
+/** The card on the home page that links to the /interests page. */
+export interface InterestsTeaser extends SectionIntro {
+  tags: string[];
+  cta: { label: string; href: `/${string}` };
+  photo?: Photo;
 }

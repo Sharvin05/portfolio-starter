@@ -4,6 +4,12 @@
  */
 export const ui = {
   skipLink: "Skip to Content",
+  photoCredits: {
+    /** The footer button that opens the list. */
+    toggle: (count: number) => `Photo Credits (${count})`,
+    /** Read before each photographer's name, e.g. "Football photo by Jane Doe". */
+    photoBy: (subject: string) => `${subject} photo by`,
+  },
   backToTop: "Back to Top",
 
   nav: {

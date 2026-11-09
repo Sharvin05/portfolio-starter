@@ -42,6 +42,7 @@ Edit the files in `src/content/`:
 | `education.ts` | Your degree and subjects |
 | `contact.ts` | Contact section text and footer line |
 | `work.ts` | Your projects, with optional screenshots |
+| `interests.ts` | The `/interests` page and its card on the home page |
 | `site.ts` | Domain, language, page titles and descriptions |
 | `brand.ts` | Your logo (also used for the favicon and app icons) |
 | `themes.ts` | Colour themes |

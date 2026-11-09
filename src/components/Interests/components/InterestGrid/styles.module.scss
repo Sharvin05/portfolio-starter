@@ -1,0 +1,38 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $card-gap;
+  list-style: none;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+}
+
+// First card spans two columns on wider screens
+.feature > .item:first-child {
+  @include sm {
+    grid-column: span 2;
+  }
+}
+
+// Two cards share the row instead of leaving a third column empty
+.pair {
+  @include lg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

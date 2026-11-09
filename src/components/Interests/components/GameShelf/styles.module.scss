@@ -1,0 +1,50 @@
+@use "mixins" as *;
+
+.root {
+  @include section;
+}
+
+.grid {
+  display: grid;
+  // Two across even on phones: eight short tiles read better than a long single column
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+
+  @include sm {
+    gap: $card-gap;
+  }
+
+  @include xl {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tile {
+  @include glass;
+  display: flex;
+  min-height: clamp(136px, 14vw, 168px);
+  flex-direction: column;
+  border-radius: $radius-card;
+  padding: clamp(16px, 2.6vw, 32px);
+}
+
+.number {
+  @include type-caption;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-soft);
+}
+
+.genre {
+  @include type-overline;
+  // Pushes the genre and title to the bottom of the tile
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--accent);
+}
+
+.title {
+  @include type-title;
+  margin-top: 8px;
+  text-wrap: balance;
+}

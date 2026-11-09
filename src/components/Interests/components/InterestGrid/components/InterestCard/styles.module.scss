@@ -1,0 +1,36 @@
+@use "mixins" as *;
+
+.root {
+  @include glass;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: $radius-card;
+  padding: 10px 10px 24px;
+}
+
+// Same height in every card, so a row lines up whatever its width
+.frame {
+  overflow: hidden;
+  height: clamp(200px, 22vw, 300px);
+  border-radius: $radius-inner;
+  background: var(--surface);
+}
+
+.body {
+  padding-inline: 14px;
+}
+
+.title {
+  @include type-title;
+  text-wrap: balance;
+}
+
+.detail {
+  @include type-body;
+  margin-top: 8px;
+  max-width: 48ch;
+  color: var(--fg-soft);
+  text-wrap: pretty;
+}
